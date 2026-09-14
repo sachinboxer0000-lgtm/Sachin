@@ -1,40 +1,728 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin Panel</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      text-align: center;
-      padding: 30px;
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#0b1020;
+    color:white;
+    padding-bottom:80px;
+}
+
+.container{
+    width:min(1000px,94%);
+    margin:auto;
+}
+
+header{
+    padding:25px 0;
+    border-bottom:1px solid #26304d;
+    margin-bottom:25px;
+}
+
+header h1{
+    font-size:28px;
+}
+
+header p{
+    color:#94a3b8;
+    margin-top:5px;
+}
+
+.panel{
+    background:#11182b;
+    border:1px solid #26304d;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:22px;
+}
+
+.panel h2{
+    margin-bottom:18px;
+    font-size:22px;
+}
+
+label{
+    display:block;
+    margin:15px 0 7px;
+    color:#cbd5e1;
+    font-weight:bold;
+}
+
+input,
+textarea{
+    width:100%;
+    border:1px solid #334155;
+    background:#0b1020;
+    color:white;
+    border-radius:10px;
+    padding:12px;
+    font-size:15px;
+    outline:none;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#60a5fa;
+}
+
+button{
+    border:0;
+    border-radius:10px;
+    padding:11px 16px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.primary{
+    background:#2563eb;
+    color:white;
+}
+
+.green{
+    background:#16a34a;
+    color:white;
+}
+
+.red{
+    background:#dc2626;
+    color:white;
+}
+
+.gray{
+    background:#334155;
+    color:white;
+}
+
+.item{
+    background:#0b1020;
+    border:1px solid #334155;
+    padding:18px;
+    border-radius:14px;
+    margin-top:15px;
+}
+
+.item-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.bottom{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:#11182b;
+    border-top:1px solid #334155;
+    padding:12px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    z-index:50;
+}
+
+.status{
+    padding:12px;
+    background:#172554;
+    border-radius:10px;
+    margin-bottom:20px;
+    color:#bfdbfe;
+    display:none;
+}
+
+small{
+    color:#94a3b8;
+}
+
+@media(max-width:600px){
+    .item-head{
+        align-items:flex-start;
+        flex-direction:column;
     }
+}
+</style>
+</head>
 
-    .admin {
-      background: white;
-      max-width: 400px;
-      margin: 40px auto;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px #bbb;
+<body>
+
+<div class="container">
+
+<header>
+    <h1>⚙️ Sachin Portfolio Admin</h1>
+    <p>यहाँ से अपनी website का content manage करो।</p>
+</header>
+
+<div id="status" class="status"></div>
+
+<!-- BASIC SETTINGS -->
+<div class="panel">
+
+<h2>🌐 Basic Website Settings</h2>
+
+<label>Website Title</label>
+<input id="siteTitle">
+
+<label>Your Name</label>
+<input id="name">
+
+<label>Tagline</label>
+<input id="tagline">
+
+<label>Profile Image URL</label>
+<input id="profileImage">
+
+<label>About Me</label>
+<textarea id="about"></textarea>
+
+<label>Footer Text</label>
+<input id="footer">
+
+</div>
+
+<!-- HERO BUTTONS -->
+<div class="panel">
+
+<h2>🔘 Main Buttons</h2>
+
+<div id="heroButtons"></div>
+
+<br>
+
+<button class="primary" onclick="addHeroButton()">
+➕ Add New Button
+</button>
+
+</div>
+
+<!-- PROJECTS -->
+<div class="panel">
+
+<h2>🚀 Projects / Demos</h2>
+
+<div id="projects"></div>
+
+<br>
+
+<button class="primary" onclick="addProject()">
+➕ Add New Demo / Project
+</button>
+
+</div>
+
+<!-- VIDEOS -->
+<div class="panel">
+
+<h2>🎬 Videos</h2>
+
+<div id="videos"></div>
+
+<br>
+
+<button class="primary" onclick="addVideo()">
+➕ Add New Video
+</button>
+
+</div>
+
+</div>
+
+<div class="bottom">
+
+<button class="green" onclick="saveLocal()">
+💾 Save Testing Data
+</button>
+
+<button class="primary" onclick="downloadJSON()">
+⬇️ Download data.json
+</button>
+
+<button class="gray" onclick="resetData()">
+🔄 Reset
+</button>
+
+</div>
+
+<script>
+
+const DEFAULT_DATA = {
+    siteTitle:"Sachin Portfolio",
+    name:"Sachin",
+    tagline:"Student • Boxer • Web Developer",
+    profileImage:"",
+    about:"",
+    heroButtons:[],
+    projects:[],
+    videos:[],
+    footer:"© 2026 Sachin. All Rights Reserved."
+};
+
+let data = structuredClone(DEFAULT_DATA);
+
+async function loadData(){
+
+    /*
+      सबसे पहले browser में saved testing data.
+    */
+    try{
+
+        const saved =
+            localStorage.getItem("sachinPortfolioData");
+
+        if(saved){
+            data = JSON.parse(saved);
+            fillForm();
+            return;
+        }
+
+    }catch(e){}
+
+    /*
+      फिर data.json.
+    */
+    try{
+
+        const response =
+            await fetch("data.json?x="+Date.now());
+
+        if(response.ok){
+
+            data = await response.json();
+            fillForm();
+            return;
+        }
+
+    }catch(e){}
+
+    fillForm();
+}
+
+function fillForm(){
+
+    document.getElementById("siteTitle").value =
+        data.siteTitle || "";
+
+    document.getElementById("name").value =
+        data.name || "";
+
+    document.getElementById("tagline").value =
+        data.tagline || "";
+
+    document.getElementById("profileImage").value =
+        data.profileImage || "";
+
+    document.getElementById("about").value =
+        data.about || "";
+
+    document.getElementById("footer").value =
+        data.footer || "";
+
+    renderHeroButtons();
+    renderProjects();
+    renderVideos();
+}
+
+function readBasic(){
+
+    data.siteTitle =
+        document.getElementById("siteTitle").value;
+
+    data.name =
+        document.getElementById("name").value;
+
+    data.tagline =
+        document.getElementById("tagline").value;
+
+    data.profileImage =
+        document.getElementById("profileImage").value;
+
+    data.about =
+        document.getElementById("about").value;
+
+    data.footer =
+        document.getElementById("footer").value;
+}
+
+/* HERO BUTTONS */
+
+function renderHeroButtons(){
+
+    const box =
+        document.getElementById("heroButtons");
+
+    box.innerHTML = "";
+
+    data.heroButtons.forEach((button,index)=>{
+
+        box.innerHTML += `
+
+        <div class="item">
+
+            <label>Button Name</label>
+
+            <input
+                value="${escapeAttr(button.text)}"
+                oninput="updateHeroButton(${index},'text',this.value)"
+            >
+
+            <label>Button Link</label>
+
+            <input
+                value="${escapeAttr(button.link)}"
+                oninput="updateHeroButton(${index},'link',this.value)"
+            >
+
+            <br><br>
+
+            <button
+                class="red"
+                onclick="deleteHeroButton(${index})">
+                🗑 Delete Button
+            </button>
+
+        </div>
+
+        `;
+    });
+}
+
+function addHeroButton(){
+
+    data.heroButtons.push({
+        text:"New Button",
+        link:"#"
+    });
+
+    renderHeroButtons();
+}
+
+function updateHeroButton(index,key,value){
+
+    data.heroButtons[index][key] = value;
+}
+
+function deleteHeroButton(index){
+
+    if(confirm("इस button को delete करें?")){
+
+        data.heroButtons.splice(index,1);
+        renderHeroButtons();
     }
+}
 
-    input {
-      width: 90%;
-      padding: 12px;
-      margin: 10px 0;
-      font-size: 18px;
+/* PROJECTS */
+
+function renderProjects(){
+
+    const box =
+        document.getElementById("projects");
+
+    box.innerHTML = "";
+
+    data.projects.forEach((project,index)=>{
+
+        box.innerHTML += `
+
+        <div class="item">
+
+            <div class="item-head">
+
+                <strong>
+                    Project ${index+1}
+                </strong>
+
+                <div class="actions">
+
+                    <button
+                        class="red"
+                        onclick="deleteProject(${index})">
+                        🗑 Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+            <label>Project Title</label>
+
+            <input
+                value="${escapeAttr(project.title)}"
+                oninput="updateProject(${index},'title',this.value)"
+            >
+
+            <label>Description</label>
+
+            <textarea
+                oninput="updateProject(${index},'description',this.value)"
+            >${escapeHTML(project.description)}</textarea>
+
+            <label>Image URL</label>
+
+            <input
+                value="${escapeAttr(project.image)}"
+                oninput="updateProject(${index},'image',this.value)"
+            >
+
+            <small>
+            Example: https://example.com/image.jpg
+            </small>
+
+            <label>Button Name</label>
+
+            <input
+                value="${escapeAttr(project.buttonText)}"
+                oninput="updateProject(${index},'buttonText',this.value)"
+            >
+
+            <label>Demo / Website Link</label>
+
+            <input
+                value="${escapeAttr(project.link)}"
+                oninput="updateProject(${index},'link',this.value)"
+            >
+
+        </div>
+
+        `;
+    });
+}
+
+function addProject(){
+
+    data.projects.push({
+        title:"New Demo",
+        description:"Demo description",
+        image:"",
+        buttonText:"Demo Dekhen",
+        link:""
+    });
+
+    renderProjects();
+
+    window.scrollTo({
+        top:document.body.scrollHeight,
+        behavior:"smooth"
+    });
+}
+
+function updateProject(index,key,value){
+
+    data.projects[index][key] = value;
+}
+
+function deleteProject(index){
+
+    if(confirm("इस project/demo को delete करें?")){
+
+        data.projects.splice(index,1);
+        renderProjects();
     }
+}
 
-    button {
-      padding: 12px 25px;
-      font-size: 18px;
-      background: black;
-      color: white;
-      border: none;
+/* VIDEOS */
+
+function renderVideos(){
+
+    const box =
+        document.getElementById("videos");
+
+    box.innerHTML = "";
+
+    data.videos.forEach((video,index)=>{
+
+        box.innerHTML += `
+
+        <div class="item">
+
+            <div class="item-head">
+
+                <strong>
+                    Video ${index+1}
+                </strong>
+
+                <button
+                    class="red"
+                    onclick="deleteVideo(${index})">
+                    🗑 Delete
+                </button>
+
+            </div>
+
+            <label>Video Title</label>
+
+            <input
+                value="${escapeAttr(video.title)}"
+                oninput="updateVideo(${index},'title',this.value)"
+            >
+
+            <label>YouTube Video URL</label>
+
+            <input
+                value="${escapeAttr(video.url)}"
+                oninput="updateVideo(${index},'url',this.value)"
+            >
+
+        </div>
+
+        `;
+    });
+}
+
+function addVideo(){
+
+    data.videos.push({
+        title:"New Video",
+        url:""
+    });
+
+    renderVideos();
+}
+
+function updateVideo(index,key,value){
+
+    data.videos[index][key] = value;
+}
+
+function deleteVideo(index){
+
+    if(confirm("इस video को delete करें?")){
+
+        data.videos.splice(index,1);
+        renderVideos();
+    }
+}
+
+/* SAVE */
+
+function saveLocal(){
+
+    readBasic();
+
+    localStorage.setItem(
+        "sachinPortfolioData",
+        JSON.stringify(data)
+    );
+
+    showStatus(
+        "✅ Data browser में save हो गया। अब index.html खोलकर changes देख सकते हो।"
+    );
+}
+
+/* DOWNLOAD JSON */
+
+function downloadJSON(){
+
+    readBasic();
+
+    const json =
+        JSON.stringify(data,null,2);
+
+    const blob =
+        new Blob([json],{
+            type:"application/json"
+        });
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href = url;
+    a.download = "data.json";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+    showStatus(
+        "✅ नया data.json download हो गया। इसे अपनी website के पुराने data.json से replace कर दो।"
+    );
+}
+
+/* RESET */
+
+function resetData(){
+
+    if(confirm("सारा testing data reset करें?")){
+
+        localStorage.removeItem(
+            "sachinPortfolioData"
+        );
+
+        location.reload();
+    }
+}
+
+/* STATUS */
+
+function showStatus(text){
+
+    const box =
+        document.getElementById("status");
+
+    box.textContent = text;
+    box.style.display = "block";
+
+    setTimeout(()=>{
+        box.style.display = "none";
+    },5000);
+}
+
+/* SAFETY FOR HTML ATTRIBUTES */
+
+function escapeAttr(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/"/g,"&quot;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+}
+
+function escapeHTML(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+}
+
+loadData();
+
+</script>
+
+</body>
+  </html>      border: none;
       border-radius: 8px;
     }
   </style>
