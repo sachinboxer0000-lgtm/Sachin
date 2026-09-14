@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Shop</title>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .card {
+      background: white;
+      max-width: 350px;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px #bbb;
+    }
+
+    .price {
+      font-size: 30px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🛒 My Shop</h1>
+
+  <div class="card">
+    <h2 id="productName">Biscuit</h2>
+    <p class="price">₹<span id="productPrice">20</span></p>
+  </div>
+
+  <script>
+    const savedPrice = localStorage.getItem("biscuitPrice");
+
+    if (savedPrice) {
+      document.getElementById("productPrice").textContent = savedPrice;
+    }
+  </script>
+
+</body>
+  </html>
