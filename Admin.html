@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .admin {
+      background: white;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px #bbb;
+    }
+
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="admin">
+
+    <h1>⚙️ Admin Panel</h1>
+
+    <h2>Biscuit</h2>
+
+    <input
+      type="number"
+      id="price"
+      value="20"
+      placeholder="Enter price"
+    >
+
+    <br>
+
+    <button onclick="updatePrice()">
+      Update Price
+    </button>
+
+    <p id="message"></p>
+
+  </div>
+
+  <script>
+    function updatePrice() {
+
+      const price = document.getElementById("price").value;
+
+      if (price === "") {
+        alert("Price enter karo");
+        return;
+      }
+
+      localStorage.setItem("biscuitPrice", price);
+
+      document.getElementById("message").textContent =
+        "✅ Price updated to ₹" + price;
+    }
+  </script>
+
+</body>
+</html>
