@@ -445,7 +445,43 @@ loadData();
 </script>
 
 </body>
-    </html>.nav-links{
+</html><!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sachin Portfolio</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:Arial,sans-serif;
+    background:#0b1020;
+    color:#fff;
+    line-height:1.6;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1100px,92%);margin:auto}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(11,16,32,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid #26304d;
+}
+.nav{
+    min-height:65px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.logo{
+    font-size:22px;
+    font-weight:800;
+}
+.nav-links{
     display:flex;
     gap:20px;
 }
@@ -480,6 +516,383 @@ loadData();
 .buttons{
     margin-top:25px;
     display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+.btn{
+    display:inline-block;
+    padding:12px 20px;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+    transition:.2s;
+}
+.btn:hover{
+    transform:translateY(-2px);
+    opacity:.9;
+}
+.btn.secondary{
+    background:#1e293b;
+    border:1px solid #334155;
+}
+
+section{padding:55px 0}
+.section-title{
+    font-size:32px;
+    margin-bottom:25px;
+}
+.about{
+    background:#11182b;
+    border:1px solid #26304d;
+    padding:25px;
+    border-radius:18px;
+    color:#cbd5e1;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+.card{
+    background:#11182b;
+    border:1px solid #26304d;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.25s;
+}
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#4b6cb7;
+}
+.card img{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    display:block;
+}
+.card-content{padding:20px}
+.card h3{
+    font-size:22px;
+    margin-bottom:8px;
+}
+.card p{
+    color:#aeb8ce;
+    margin-bottom:17px;
+}
+.video{
+    width:100%;
+    aspect-ratio:16/9;
+    border:0;
+    border-radius:14px;
+}
+
+.empty{
+    color:#94a3b8;
+    background:#11182b;
+    border:1px dashed #334155;
+    padding:25px;
+    border-radius:15px;
+}
+
+footer{
+    text-align:center;
+    padding:35px 0;
+    color:#8792aa;
+    border-top:1px solid #26304d;
+}
+
+@media(max-width:600px){
+    .nav-links{display:none}
+    .hero{padding:55px 0}
+    section{padding:40px 0}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="container nav">
+    <div class="logo" id="navTitle">Sachin</div>
+
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#videos">Videos</a>
+    </div>
+</div>
+</nav>
+
+<header class="hero">
+<div class="container">
+
+    <img id="profileImage" class="profile" src="" alt="Profile">
+
+    <h1>Hi, I'm <span id="name">Sachin</span></h1>
+
+    <p id="tagline"></p>
+
+    <div class="buttons" id="heroButtons"></div>
+
+</div>
+</header>
+
+<section id="about">
+<div class="container">
+
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about">
+        <p id="aboutText"></p>
+    </div>
+
+</div>
+</section>
+
+<section id="projects">
+<div class="container">
+
+    <h2 class="section-title">My Projects & Demos</h2>
+
+    <div class="grid" id="projectsGrid"></div>
+
+</div>
+</section>
+
+<section id="videos">
+<div class="container">
+
+    <h2 class="section-title">Videos</h2>
+
+    <div class="grid" id="videosGrid"></div>
+
+</div>
+</section>
+
+<footer>
+<div class="container">
+    <p id="footerText">© 2026 Sachin. All Rights Reserved.</p>
+</div>
+</footer>
+
+<script>
+const DEFAULT_DATA = {
+    siteTitle:"Sachin Portfolio",
+    name:"Sachin",
+    tagline:"Student • Boxer • Web Developer",
+    profileImage:"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500",
+    about:"I am Sachin. I love technology, coding, websites and boxing. I create modern and mobile-friendly websites and experiment with new projects.",
+    heroButtons:[
+        {
+            text:"My Projects",
+            link:"#projects"
+        }
+    ],
+    projects:[],
+    videos:[],
+    footer:"© 2026 Sachin. All Rights Reserved."
+};
+
+async function loadData(){
+
+    let data = null;
+
+    /*
+      अगर Admin Panel ने इसी browser में temporary
+      data save किया है तो पहले उसे इस्तेमाल करेंगे।
+    */
+    try{
+        const saved = localStorage.getItem("sachinPortfolioData");
+        if(saved){
+            data = JSON.parse(saved);
+        }
+    }catch(e){}
+
+    /*
+      अगर localStorage में data नहीं है तो data.json पढ़ेंगे।
+    */
+    if(!data){
+        try{
+            const response = await fetch("data.json?x="+Date.now());
+
+            if(response.ok){
+                data = await response.json();
+            }
+        }catch(e){}
+    }
+
+    if(!data) data = DEFAULT_DATA;
+
+    render(data);
+}
+
+function render(data){
+
+    document.title = data.siteTitle || "Sachin Portfolio";
+
+    document.getElementById("navTitle").textContent =
+        data.siteTitle || data.name || "Sachin";
+
+    document.getElementById("name").textContent =
+        data.name || "Sachin";
+
+    document.getElementById("tagline").textContent =
+        data.tagline || "";
+
+    document.getElementById("profileImage").src =
+        data.profileImage || DEFAULT_DATA.profileImage;
+
+    document.getElementById("aboutText").textContent =
+        data.about || "";
+
+    document.getElementById("footerText").textContent =
+        data.footer || "";
+
+    renderHeroButtons(data.heroButtons || []);
+    renderProjects(data.projects || []);
+    renderVideos(data.videos || []);
+}
+
+function renderHeroButtons(buttons){
+
+    const box = document.getElementById("heroButtons");
+    box.innerHTML = "";
+
+    buttons.forEach(button => {
+
+        if(!button.text) return;
+
+        const a = document.createElement("a");
+
+        a.className = "btn";
+        a.textContent = button.text;
+        a.href = button.link || "#";
+
+        if(button.link && !button.link.startsWith("#")){
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+        }
+
+        box.appendChild(a);
+    });
+}
+
+function renderProjects(projects){
+
+    const grid = document.getElementById("projectsGrid");
+    grid.innerHTML = "";
+
+    if(projects.length === 0){
+        grid.innerHTML =
+            '<div class="empty">अभी कोई project/demo add नहीं किया गया है।</div>';
+        return;
+    }
+
+    projects.forEach(project => {
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const img = document.createElement("img");
+        img.src = project.image || "https://via.placeholder.com/600x400";
+        img.alt = project.title || "Project";
+
+        const content = document.createElement("div");
+        content.className = "card-content";
+
+        const title = document.createElement("h3");
+        title.textContent = project.title || "Untitled";
+
+        const desc = document.createElement("p");
+        desc.textContent = project.description || "";
+
+        content.appendChild(title);
+        content.appendChild(desc);
+
+        if(project.link){
+
+            const button = document.createElement("a");
+
+            button.className = "btn";
+            button.textContent = project.buttonText || "Demo Dekhen";
+            button.href = project.link;
+            button.target = "_blank";
+            button.rel = "noopener noreferrer";
+
+            content.appendChild(button);
+        }
+
+        card.appendChild(img);
+        card.appendChild(content);
+
+        grid.appendChild(card);
+    });
+}
+
+function renderVideos(videos){
+
+    const grid = document.getElementById("videosGrid");
+    grid.innerHTML = "";
+
+    if(videos.length === 0){
+        grid.innerHTML =
+            '<div class="empty">अभी कोई video add नहीं किया गया है।</div>';
+        return;
+    }
+
+    videos.forEach(video => {
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const content = document.createElement("div");
+        content.className = "card-content";
+
+        const title = document.createElement("h3");
+        title.textContent = video.title || "Video";
+
+        content.appendChild(title);
+
+        /*
+          YouTube URL को embed URL में बदलने की कोशिश।
+        */
+        if(video.url){
+
+            let embed = video.url;
+
+            if(video.url.includes("youtube.com/watch?v=")){
+                const id = video.url.split("v=")[1].split("&")[0];
+                embed = "https://www.youtube.com/embed/" + id;
+            }
+
+            if(video.url.includes("youtu.be/")){
+                const id = video.url.split("youtu.be/")[1].split("?")[0];
+                embed = "https://www.youtube.com/embed/" + id;
+            }
+
+            const iframe = document.createElement("iframe");
+
+            iframe.className = "video";
+            iframe.src = embed;
+            iframe.allowFullscreen = true;
+            iframe.loading = "lazy";
+
+            content.appendChild(iframe);
+        }
+
+        card.appendChild(content);
+        grid.appendChild(card);
+    });
+}
+
+loadData();
+</script>
+
+</body>
+        </html>  display:flex;
     justify-content:center;
     gap:12px;
     flex-wrap:wrap;
