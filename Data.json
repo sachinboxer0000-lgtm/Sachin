@@ -1,6 +1,52 @@
 {
-  "product": {
-    "name": "Biscuit",
-    "price": 20
-  }
+  "siteTitle": "Sachin Portfolio",
+  "name": "Sachin",
+  "tagline": "Student • Boxer • Web Developer",
+  "profileImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500",
+
+  "about": "I am Sachin. I love technology, coding, websites and boxing. I create modern and mobile-friendly websites and experiment with new projects.",
+
+  "heroButtons": [
+    {
+      "text": "My Projects",
+      "link": "#projects"
+    },
+    {
+      "text": "Contact Me",
+      "link": "https://wa.me/"
+    }
+  ],
+
+  "projects": [
+    {
+      "title": "Kirana Store Website",
+      "description": "A modern mobile-friendly website for a local kirana store.",
+      "image": "https://images.unsplash.com/photo-1601598851547-4302969d9d1d?w=800",
+      "buttonText": "Demo Dekhen",
+      "link": "https://example.com"
+    },
+    {
+      "title": "Mind Test Website",
+      "description": "An interactive mind and memory testing website.",
+      "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800",
+      "buttonText": "New Demo Dekhen",
+      "link": "https://example.com"
+    },
+    {
+      "title": "3D Cube Game",
+      "description": "An interactive cube solving game created with HTML, CSS and JavaScript.",
+      "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800",
+      "buttonText": "Game Khelen",
+      "link": "https://example.com"
+    }
+  ],
+
+  "videos": [
+    {
+      "title": "My Website Demo",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    }
+  ],
+
+  "footer": "© 2026 Sachin. All Rights Reserved."
 }
