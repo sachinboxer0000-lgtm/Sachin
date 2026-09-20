@@ -3,38 +3,1512 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>किराना स्टोर</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<meta name="description"
+content="Professional and affordable business websites starting from ₹500.">
+
+<title>Sachin Websites | Business Websites ₹500 से</title>
+
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+
+/* =========================
+   RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#f5f8ff;
+  color:#172033;
+  line-height:1.5;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(1100px,92%);
+  margin:auto;
+}
+
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+body::before{
+  content:"";
+  position:fixed;
+  width:350px;
+  height:350px;
+  border-radius:50%;
+  background:#2563eb20;
+  filter:blur(80px);
+  top:10%;
+  left:-150px;
+  z-index:-1;
+  animation:floatBlob 8s ease-in-out infinite;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  background:#7c3aed18;
+  filter:blur(80px);
+  right:-120px;
+  bottom:10%;
+  z-index:-1;
+  animation:floatBlob2 10s ease-in-out infinite;
+}
+
+@keyframes floatBlob{
+  0%,100%{
+    transform:translate(0,0);
   }
-  html {
-    scroll-behavior: smooth;
+  50%{
+    transform:translate(80px,60px);
   }
-  body {
-    font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #f7f8fa;
-    color: #1f2937;
-    line-height: 1.6;
-    font-size: 16px;
-    overflow-x: hidden;
+}
+
+@keyframes floatBlob2{
+  0%,100%{
+    transform:translate(0,0);
   }
-  :root {
-    --primary: #16a34a;
-    --primary-dark: #15803d;
-    --primary-light: #dcfce7;
-    --accent: #ea580c;
-    --text: #1f2937;
-    --text-light: #6b7280;
-    --bg: #f7f8fa;
-    --card: #ffffff;
-    --border: #e5e7eb;
+  50%{
+    transform:translate(-60px,-70px);
+  }
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  background:rgba(15,23,42,.88);
+  backdrop-filter:blur(16px);
+
+  color:white;
+  padding:12px 0;
+
+  box-shadow:0 5px 30px #0003;
+
+  animation:headerDrop .7s ease;
+}
+
+@keyframes headerDrop{
+  from{
+    transform:translateY(-100%);
+    opacity:0;
+  }
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-img{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  object-fit:cover;
+
+  border:2px solid #93c5fd;
+
+  box-shadow:
+    0 0 15px #3b82f655;
+
+  animation:logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:0 0 15px #3b82f655;
+  }
+
+  50%{
+    transform:scale(1.06);
+    box-shadow:0 0 25px #60a5fa99;
+  }
+}
+
+.logo-text{
+  font-size:20px;
+  font-weight:900;
+}
+
+.logo-text span{
+  color:#93c5fd;
+}
+
+.nav-btn{
+  background:white;
+  color:#1d4ed8;
+
+  padding:10px 17px;
+
+  border-radius:30px;
+
+  font-weight:800;
+
+  transition:.3s;
+
+  box-shadow:0 5px 20px #0002;
+}
+
+.nav-btn:hover{
+  transform:translateY(-3px) scale(1.04);
+  box-shadow:0 8px 25px #60a5fa55;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  position:relative;
+  padding:90px 0 75px;
+  text-align:center;
+
+  background:
+    radial-gradient(circle at 20% 20%,#bfdbfe88,transparent 30%),
+    radial-gradient(circle at 80% 10%,#ddd6fe77,transparent 30%),
+    linear-gradient(180deg,#eef5ff,#f5f8ff);
+
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  border:1px solid #2563eb22;
+  border-radius:50%;
+
+  right:8%;
+  top:60px;
+
+  animation:spin 15s linear infinite;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+
+  width:100px;
+  height:100px;
+
+  border:1px solid #7c3aed33;
+  border-radius:50%;
+
+  left:8%;
+  bottom:40px;
+
+  animation:spinReverse 12s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+@keyframes spinReverse{
+  to{
+    transform:rotate(-360deg);
+  }
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  animation:heroEnter 1s ease;
+}
+
+@keyframes heroEnter{
+  from{
+    opacity:0;
+    transform:translateY(35px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.badge{
+  display:inline-block;
+
+  background:#dbeafe;
+  color:#1d4ed8;
+
+  padding:8px 15px;
+
+  border-radius:30px;
+
+  font-weight:800;
+
+  margin-bottom:20px;
+
+  animation:badgeFloat 3s ease-in-out infinite;
+}
+
+@keyframes badgeFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-6px);
+  }
+}
+
+h1{
+  font-size:clamp(36px,8vw,64px);
+  line-height:1.05;
+  margin-bottom:20px;
+  font-weight:900;
+}
+
+.gradient-text{
+  background:linear-gradient(
+    90deg,
+    #2563eb,
+    #7c3aed,
+    #2563eb
+  );
+
+  background-size:200% auto;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+
+  animation:gradientMove 4s linear infinite;
+}
+
+@keyframes gradientMove{
+  to{
+    background-position:200% center;
+  }
+}
+
+.hero p{
+  max-width:650px;
+  margin:0 auto 30px;
+
+  color:#526079;
+
+  font-size:18px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.cta{
+  display:inline-block;
+
+  background:linear-gradient(
+    135deg,
+    #16a34a,
+    #22c55e
+  );
+
+  color:white;
+
+  padding:14px 23px;
+
+  border-radius:12px;
+
+  font-weight:900;
+
+  box-shadow:
+    0 8px 25px #16a34a40;
+
+  transition:.3s;
+
+  position:relative;
+  overflow:hidden;
+}
+
+.cta::before{
+  content:"";
+
+  position:absolute;
+
+  width:100px;
+  height:100%;
+
+  top:0;
+  left:-120px;
+
+  background:#ffffff55;
+
+  transform:skewX(-20deg);
+
+  animation:shine 3s infinite;
+}
+
+@keyframes shine{
+  0%{
+    left:-120px;
+  }
+
+  40%,100%{
+    left:130%;
+  }
+}
+
+.cta:hover{
+  transform:translateY(-4px) scale(1.03);
+
+  box-shadow:
+    0 14px 30px #16a34a55;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+  padding:65px 0;
+}
+
+.title{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.title h2{
+  font-size:34px;
+  margin-bottom:7px;
+}
+
+.title p{
+  color:#64748b;
+}
+
+
+/* =========================
+   DEMO CARDS
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  position:relative;
+
+  background:#ffffffcc;
+  backdrop-filter:blur(10px);
+
+  border:1px solid #e2e8f0;
+
+  border-radius:22px;
+
+  padding:25px;
+
+  box-shadow:
+    0 10px 35px #1720330d;
+
+  transition:.35s;
+
+  overflow:hidden;
+
+  animation:cardAppear .8s ease both;
+}
+
+.card:nth-child(2){
+  animation-delay:.15s;
+}
+
+.card:nth-child(3){
+  animation-delay:.3s;
+}
+
+@keyframes cardAppear{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.card::before{
+  content:"";
+
+  position:absolute;
+
+  width:120px;
+  height:120px;
+
+  border-radius:50%;
+
+  background:#2563eb12;
+
+  top:-60px;
+  right:-60px;
+
+  transition:.4s;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.02);
+
+  box-shadow:
+    0 20px 45px #2563eb20;
+
+  border-color:#bfdbfe;
+}
+
+.card:hover::before{
+  transform:scale(2);
+}
+
+.icon{
+  font-size:42px;
+  margin-bottom:13px;
+
+  display:inline-block;
+
+  transition:.3s;
+}
+
+.card:hover .icon{
+  transform:scale(1.2) rotate(6deg);
+}
+
+.card h3{
+  font-size:22px;
+  margin-bottom:7px;
+}
+
+.card p{
+  color:#64748b;
+  margin-bottom:18px;
+}
+
+.demo{
+  display:inline-block;
+
+  background:#111827;
+  color:white;
+
+  padding:10px 17px;
+
+  border-radius:10px;
+
+  font-weight:800;
+
+  transition:.3s;
+}
+
+.demo:hover{
+  background:#2563eb;
+  transform:translateX(4px);
+}
+
+
+/* =========================
+   PLAN
+========================= */
+
+.plans-single{
+  max-width:680px;
+  margin:auto;
+}
+
+.premium-plan{
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      #dbeafe,
+      transparent 40%
+    ),
+    #ffffff;
+
+  border:2px solid #2563eb;
+
+  border-radius:28px;
+
+  padding:32px 27px;
+
+  text-align:center;
+
+  box-shadow:
+    0 20px 55px #2563eb20;
+
+  transition:.4s;
+
+  animation:planFloat 5s ease-in-out infinite;
+}
+
+@keyframes planFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-7px);
+  }
+}
+
+.premium-plan:hover{
+  transform:translateY(-12px) scale(1.01);
+
+  box-shadow:
+    0 30px 70px #2563eb30;
+}
+
+.premium-top{
+  margin-bottom:12px;
+}
+
+.pop{
+  display:inline-block;
+
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #7c3aed
+  );
+
+  color:white;
+
+  padding:8px 16px;
+
+  border-radius:30px;
+
+  font-size:12px;
+
+  font-weight:900;
+
+  box-shadow:
+    0 6px 20px #2563eb40;
+
+  animation:popPulse 2s infinite;
+}
+
+@keyframes popPulse{
+  0%,100%{
+    box-shadow:0 6px 20px #2563eb40;
+  }
+
+  50%{
+    box-shadow:0 6px 30px #7c3aed66;
+  }
+}
+
+.plan-icon{
+  width:78px;
+  height:78px;
+
+  margin:17px auto;
+
+  border-radius:22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:38px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #dbeafe,
+      #ede9fe
+    );
+
+  box-shadow:
+    inset 0 0 0 1px #bfdbfe,
+    0 10px 25px #2563eb20;
+
+  animation:rocketFloat 3s ease-in-out infinite;
+}
+
+@keyframes rocketFloat{
+  0%,100%{
+    transform:translateY(0) rotate(0);
+  }
+
+  50%{
+    transform:translateY(-8px) rotate(3deg);
+  }
+}
+
+.premium-plan h3{
+  font-size:26px;
+  color:#111827;
+  margin-bottom:4px;
+}
+
+.premium-plan .amount{
+  font-size:52px;
+  font-weight:900;
+
+  background:
+    linear-gradient(
+      90deg,
+      #2563eb,
+      #7c3aed
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+
+  margin:5px 0;
+}
+
+.plan-subtitle{
+  color:#64748b;
+  margin-bottom:23px;
+}
+
+
+/* =========================
+   VERCEL BOX
+========================= */
+
+.vercel-box{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  text-align:left;
+
+  background:#f8fafc;
+
+  border:1px solid #dbeafe;
+
+  border-radius:17px;
+
+  padding:16px;
+
+  margin-bottom:23px;
+
+  transition:.3s;
+}
+
+.vercel-box:hover{
+  transform:scale(1.02);
+  border-color:#93c5fd;
+
+  box-shadow:0 8px 25px #2563eb12;
+}
+
+.vercel-icon{
+  min-width:48px;
+  height:48px;
+
+  border-radius:13px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#111827;
+  color:white;
+
+  font-size:21px;
+  font-weight:bold;
+
+  transition:.3s;
+}
+
+.vercel-box:hover .vercel-icon{
+  transform:rotate(10deg) scale(1.08);
+}
+
+.vercel-box strong{
+  display:block;
+  color:#111827;
+  margin-bottom:3px;
+}
+
+.vercel-box p{
+  color:#475569;
+  font-size:14px;
+  margin:0;
+}
+
+.vercel-box b{
+  color:#2563eb;
+}
+
+.vercel-box small{
+  display:block;
+  color:#94a3b8;
+  margin-top:3px;
+  font-size:12px;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+  list-style:none;
+
+  text-align:left;
+
+  background:#ffffff;
+
+  border-radius:17px;
+
+  padding:18px;
+
+  margin:18px 0 25px;
+
+  border:1px solid #e5e7eb;
+}
+
+.features li{
+  margin:11px 0;
+
+  color:#334155;
+
+  font-size:15px;
+
+  transition:.25s;
+}
+
+.features li:hover{
+  transform:translateX(5px);
+  color:#2563eb;
+}
+
+
+/* =========================
+   ORDER BUTTON
+========================= */
+
+.order-btn{
+  display:block;
+
+  width:100%;
+
+  padding:15px 18px;
+
+  border-radius:13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #16a34a,
+      #22c55e
+    );
+
+  color:white;
+
+  font-weight:900;
+
+  font-size:17px;
+
+  box-shadow:
+    0 10px 25px #16a34a35;
+
+  transition:.3s;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.order-btn::before{
+  content:"";
+
+  position:absolute;
+
+  width:80px;
+  height:150%;
+
+  background:#ffffff35;
+
+  top:-20px;
+  left:-100px;
+
+  transform:rotate(20deg);
+
+  animation:buttonShine 3s infinite;
+}
+
+@keyframes buttonShine{
+  0%{
+    left:-100px;
+  }
+
+  50%,100%{
+    left:120%;
+  }
+}
+
+.order-btn:hover{
+  transform:translateY(-4px) scale(1.02);
+
+  box-shadow:
+    0 15px 35px #16a34a50;
+}
+
+
+/* =========================
+   ORDER SECTION
+========================= */
+
+.order{
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at 10% 20%,#2563eb55,transparent 30%),
+    radial-gradient(circle at 90% 80%,#7c3aed55,transparent 30%),
+    #111827;
+
+  color:white;
+
+  border-radius:25px;
+
+  text-align:center;
+
+  padding:55px 20px;
+
+  box-shadow:
+    0 20px 50px #11182730;
+}
+
+.order::before,
+.order::after{
+  content:"";
+
+  position:absolute;
+
+  border:1px solid #ffffff18;
+
+  border-radius:50%;
+}
+
+.order::before{
+  width:180px;
+  height:180px;
+
+  top:-80px;
+  left:-60px;
+
+  animation:spin 15s linear infinite;
+}
+
+.order::after{
+  width:230px;
+  height:230px;
+
+  bottom:-130px;
+  right:-70px;
+
+  animation:spinReverse 18s linear infinite;
+}
+
+.order h2{
+  position:relative;
+  z-index:2;
+
+  font-size:30px;
+}
+
+.order p{
+  position:relative;
+  z-index:2;
+
+  color:#cbd5e1;
+
+  margin:12px auto 25px;
+
+  max-width:600px;
+}
+
+.order .cta{
+  position:relative;
+  z-index:2;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:28px 0;
+
+  text-align:center;
+
+  color:#64748b;
+
+  font-size:14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  header{
+    padding:10px 0;
+  }
+
+  .logo-img{
+    width:43px;
+    height:43px;
+  }
+
+  .logo-text{
+    font-size:18px;
+  }
+
+  .nav-btn{
+    padding:9px 12px;
+    font-size:13px;
+  }
+
+  .hero{
+    padding:70px 0 55px;
+  }
+
+  h1{
+    font-size:40px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  section{
+    padding:48px 0;
+  }
+
+  .title h2{
+    font-size:28px;
+  }
+
+  .premium-plan{
+    padding:27px 17px;
+  }
+
+  .premium-plan h3{
+    font-size:22px;
+  }
+
+  .premium-plan .amount{
+    font-size:45px;
+  }
+
+  .vercel-box{
+    align-items:flex-start;
+  }
+
+  .order{
+    padding:45px 18px;
+  }
+
+  .order h2{
+    font-size:26px;
+  }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition:none !important;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <div class="container nav">
+
+    <div class="brand">
+
+      <img
+        src="/IMG-20260920-WA0004.jpg"
+        alt="Sachin Websites Logo"
+        class="logo-img"
+      >
+
+      <div class="logo-text">
+        Sachin <span>Websites</span>
+      </div>
+
+    </div>
+
+
+    <!-- WHATSAPP -->
+
+    <a
+      href="https://wa.me/918502969133?text=Namaste%20Sachin%2C%20mujhe%20₹500%20wali%20business%20website%20banwani%20hai."
+      class="nav-btn"
+      target="_blank"
+      rel="noopener"
+    >
+      Website बनवाएं
+    </a>
+
+  </div>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="container hero-content">
+
+    <span class="badge">
+      🚀 Professional Websites
+    </span>
+
+    <h1>
+      आपके Business की
+      <br>
+
+      <span class="gradient-text">
+        Professional Website
+      </span>
+    </h1>
+
+    <p>
+      अपने business को online लाएं एक सुंदर,
+      fast और mobile-friendly website के साथ।
+    </p>
+
+
+    <!-- WHATSAPP -->
+
+    <a
+      href="https://wa.me/918502969133?text=Namaste%20Sachin%2C%20mujhe%20₹500%20wali%20business%20website%20banwani%20hai."
+      class="cta"
+      target="_blank"
+      rel="noopener"
+    >
+      ₹500 में Website बनवाएं 🚀
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     DEMOS
+========================= -->
+
+<section>
+
+  <div class="container">
+
+    <div class="title">
+
+      <h2>
+        हमारे Website Demos
+      </h2>
+
+      <p>
+        अपने business के लिए design देखें
+      </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+      <!-- KIRANA -->
+
+      <div class="card">
+
+        <div class="icon">
+          🛒
+        </div>
+
+        <h3>
+          Kirana Store
+        </h3>
+
+        <p>
+          Grocery और किराना business के लिए
+          professional website।
+        </p>
+
+        <a
+          href="#"
+          class="demo"
+        >
+          Demo देखें →
+        </a>
+
+      </div>
+
+
+      <!-- SALON -->
+
+      <div class="card">
+
+        <div class="icon">
+          ✂️
+        </div>
+
+        <h3>
+          Salon
+        </h3>
+
+        <p>
+          Salon और beauty business के लिए
+          modern website।
+        </p>
+
+        <a
+          href="#"
+          class="demo"
+        >
+          Demo देखें →
+        </a>
+
+      </div>
+
+
+      <!-- GYM -->
+
+      <div class="card">
+
+        <div class="icon">
+          🏋️
+        </div>
+
+        <h3>
+          Gym
+        </h3>
+
+        <p>
+          Gym और fitness business के लिए
+          attractive website।
+        </p>
+
+        <a
+          href="#"
+          class="demo"
+        >
+          Demo देखें →
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     ₹500 PLAN
+========================= -->
+
+<section id="plans">
+
+  <div class="container">
+
+    <div class="title">
+
+      <span class="badge">
+        💎 Simple & Affordable
+      </span>
+
+      <h2>
+        ₹500 Website Plan
+      </h2>
+
+      <p>
+        आपके business के लिए एक complete professional website
+      </p>
+
+    </div>
+
+
+    <div class="plans-single">
+
+
+      <div class="premium-plan">
+
+
+        <div class="premium-top">
+
+          <span class="pop">
+            ⭐ COMPLETE PLAN
+          </span>
+
+        </div>
+
+
+        <div class="plan-icon">
+          🚀
+        </div>
+
+
+        <h3>
+          Professional Business Website
+        </h3>
+
+
+        <div class="amount">
+          ₹500
+        </div>
+
+
+        <p class="plan-subtitle">
+          आपके business के लिए सुंदर,
+          fast और mobile-friendly website
+        </p>
+
+
+        <!-- VERCEL -->
+
+        <div class="vercel-box">
+
+          <div class="vercel-icon">
+            ▲
+          </div>
+
+          <div>
+
+            <strong>
+              Website Address
+            </strong>
+
+            <p>
+              आपकी website का नाम
+              <b>नाम.vercel.app</b>
+              के रूप में होगा।
+            </p>
+
+            <small>
+              .com domain शामिल नहीं है
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <ul class="features">
+
+          <li>
+            ✓ Professional & Beautiful Design
+          </li>
+
+          <li>
+            ✓ Mobile-Friendly Website
+          </li>
+
+          <li>
+            ✓ Business Information Section
+          </li>
+
+          <li>
+            ✓ WhatsApp Contact Button
+          </li>
+
+          <li>
+            ✓ Google Maps Location
+          </li>
+
+          <li>
+            ✓ Services / Products Section
+          </li>
+
+          <li>
+            ✓ Fast Loading Website
+          </li>
+
+          <li>
+            ✓ Free Vercel Hosting
+          </li>
+
+          <li>
+            ✓ Website Address: नाम.vercel.app
+          </li>
+
+        </ul>
+
+
+        <!-- WHATSAPP -->
+
+        <a
+          href="https://wa.me/918502969133?text=Namaste%20Sachin%2C%20mujhe%20₹500%20wali%20Professional%20Business%20Website%20banwani%20hai."
+          class="order-btn"
+          target="_blank"
+          rel="noopener"
+        >
+          🚀 ₹500 में Website बनवाएं
+        </a>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     ORDER SECTION
+========================= -->
+
+<section id="order">
+
+  <div class="container">
+
+    <div class="order">
+
+      <h2>
+        अपने Business को Online लाएं 🚀
+      </h2>
+
+      <p>
+        सिर्फ ₹500 में अपनी professional
+        business website बनवाएं।
+      </p>
+
+
+      <!-- WHATSAPP -->
+
+      <a
+        href="https://wa.me/918502969133?text=Namaste%20Sachin%2C%20mujhe%20₹500%20wali%20business%20website%20banwani%20hai."
+        class="cta"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp पर Contact करें 💬
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="container">
+
+    © 2026 Sachin Websites ·
+    Professional Websites ₹500 से
+
+  </div>
+
+</footer>
+
+
+</body>
+ </html>    --border: #e5e7eb;
     --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
     --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08);
     --radius: 12px;
